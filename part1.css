@@ -1,0 +1,223 @@
+/* ==========================================================
+   Shared stylesheet – portfolio site
+   ========================================================== */
+
+/* ---------- Design tokens ---------- */
+:root {
+  --color-bg: #f7f8fa;
+  --color-surface: #ffffff;
+  --color-text: #1a1a1a;
+  --color-muted: #4a4f57;
+  --color-border: #5a5a5a;
+  --color-accent: #0b57d0;
+  --color-accent-dark: #083f9a;
+  --color-header-bg: #14213d;
+  --color-header-text: #ffffff;
+
+  --font-body: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --radius: 4px;
+  --space: 1rem;
+  --content-width: 48rem;
+}
+
+/* ---------- Reset / base ---------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  font-family: var(--font-body);
+  font-size: 1.0625rem;
+  line-height: 1.6;
+  color: var(--color-text);
+  background: var(--color-bg);
+}
+
+img,
+svg,
+video {
+  max-width: 100%;
+  height: auto;
+}
+
+h1, h2, h3 {
+  line-height: 1.25;
+  margin: 0 0 0.75rem;
+}
+
+h1 { font-size: 2rem; }
+h2 { font-size: 1.5rem; }
+h3 { font-size: 1.2rem; }
+
+p {
+  margin: 0 0 1rem;
+  max-width: 65ch;
+}
+
+a {
+  color: var(--color-accent);
+  text-underline-offset: 0.15em;
+}
+
+a:hover {
+  color: var(--color-accent-dark);
+}
+
+/* Visible keyboard focus everywhere */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 3px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+/* ---------- Header & navigation ---------- */
+header {
+  background: var(--color-header-bg);
+  color: var(--color-header-text);
+}
+
+header nav ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.5rem;
+  margin: 0;
+  padding: 1rem;
+  list-style: none;
+  max-width: var(--content-width);
+  margin-inline: auto;
+}
+
+header nav a {
+  color: var(--color-header-text);
+  text-decoration: none;
+  padding: 0.25rem 0.1rem;
+  border-bottom: 2px solid transparent;
+}
+
+header nav a:hover,
+header nav a[aria-current="page"] {
+  border-bottom-color: var(--color-header-text);
+}
+
+header nav a:focus-visible {
+  outline-color: #ffffff;
+}
+
+/* ---------- Main content ---------- */
+main {
+  flex: 1;
+  width: 100%;
+  max-width: var(--content-width);
+  margin-inline: auto;
+  padding: 2rem 1rem;
+}
+
+/* ---------- Footer ---------- */
+footer {
+  padding: 1rem;
+  text-align: center;
+  color: var(--color-muted);
+  border-top: 1px solid #d0d4da;
+}
+
+footer p {
+  margin: 0 auto;
+}
+
+/* ==========================================================
+   Contact form
+   ========================================================== */
+.contact-form {
+  display: flex;
+  flex-direction: column;   /* labels above controls */
+  gap: 1.25rem;
+  width: 100%;
+  max-width: 36rem;
+  padding: 1.5rem;
+  background: var(--color-surface);
+  border: 1px solid #d0d4da;
+  border-radius: var(--radius);
+}
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.contact-form label {
+  font-weight: 600;
+}
+
+.contact-form input[type="text"],
+.contact-form input[type="email"],
+.contact-form textarea {
+  width: 100%;
+  padding: 0.65rem 0.75rem;
+  font: inherit;
+  color: var(--color-text);
+  background: #ffffff;
+  border: 2px solid var(--color-border);
+  border-radius: var(--radius);
+}
+
+.contact-form textarea {
+  min-height: 8rem;
+  resize: vertical;
+}
+
+.contact-form button {
+  align-self: flex-start;
+  padding: 0.7rem 1.5rem;
+  font: inherit;
+  font-weight: 600;
+  color: #ffffff;
+  background: var(--color-accent);
+  border: 2px solid var(--color-accent);
+  border-radius: var(--radius);
+  cursor: pointer;
+}
+
+.contact-form button:hover {
+  background: var(--color-accent-dark);
+  border-color: var(--color-accent-dark);
+}
+
+/* ---------- Narrow screens ---------- */
+@media (max-width: 480px) {
+  h1 { font-size: 1.6rem; }
+
+  main {
+    padding: 1.25rem 0.75rem;
+  }
+
+  .contact-form {
+    padding: 1rem;
+  }
+
+  .contact-form button {
+    align-self: stretch;
+  }
+}
+
+/* ---------- Respect user preferences ---------- */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}
