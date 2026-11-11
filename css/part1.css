@@ -1,36 +1,93 @@
-/* ==========================================================
-   Shared stylesheet – portfolio site
-   ========================================================== */
-
 /* ---------- Design tokens ---------- */
+ 
+/* Light theme: the default. form-no-js.html never changes it. */
 :root {
+  color-scheme: light;
+ 
   --color-bg: #f7f8fa;
   --color-surface: #ffffff;
   --color-text: #1a1a1a;
   --color-muted: #4a4f57;
   --color-border: #5a5a5a;
+  --color-border-soft: #d0d4da;
   --color-accent: #0b57d0;
   --color-accent-dark: #083f9a;
   --color-header-bg: #14213d;
   --color-header-text: #ffffff;
-
+ 
+  --color-input-bg: #ffffff;
+  --color-focus: #0b57d0;
+ 
+  --color-button-bg: #0b57d0;
+  --color-button-hover: #083f9a;
+  --color-button-border: #0b57d0;
+  --color-button-text: #ffffff;
+ 
+  --color-invalid: #b00020;
+  --color-invalid-bg: #fff4f5;
+  --color-invalid-text: #8c0019;
+  --color-valid: #1b6e2d;
+  --color-valid-bg: #f3faf4;
+ 
+  --color-info-bg: #eef2f8;
+  --color-warn-border: #8a5a00;
+  --color-warn-bg: #fff6dc;
+  --color-limit-border: #14213d;
+  --color-limit-bg: #e8eefc;
+ 
   --font-body: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   --radius: 4px;
   --space: 1rem;
   --content-width: 48rem;
 }
-
+ 
+/* Dark theme: only the shared colors change */
+:root[data-theme="dark"] {
+  color-scheme: dark;
+ 
+  --color-bg: #0f1623;
+  --color-surface: #182233;
+  --color-text: #e8edf3;
+  --color-muted: #aab5c3;
+  --color-border: #8d9bb0;
+  --color-border-soft: #3a475c;
+  --color-accent: #7db3ff;
+  --color-accent-dark: #b3d3ff;
+  --color-header-bg: #0a1020;
+  --color-header-text: #ffffff;
+ 
+  --color-input-bg: #0f1623;
+  --color-focus: #ffc857;
+ 
+  --color-button-bg: #0b57d0;
+  --color-button-hover: #083f9a;
+  --color-button-border: #7db3ff;
+  --color-button-text: #ffffff;
+ 
+  --color-invalid: #ff6b81;
+  --color-invalid-bg: #2e131b;
+  --color-invalid-text: #ff9aa8;
+  --color-valid: #6fd08a;
+  --color-valid-bg: #12261a;
+ 
+  --color-info-bg: #1f2b40;
+  --color-warn-border: #f0b94a;
+  --color-warn-bg: #3a2e10;
+  --color-limit-border: #9bb8f0;
+  --color-limit-bg: #1d3052;
+}
+ 
 /* ---------- Reset / base ---------- */
 *,
 *::before,
 *::after {
   box-sizing: border-box;
 }
-
+ 
 html {
   -webkit-text-size-adjust: 100%;
 }
-
+ 
 body {
   margin: 0;
   min-height: 100vh;
@@ -42,56 +99,57 @@ body {
   color: var(--color-text);
   background: var(--color-bg);
 }
-
+ 
 img,
 svg,
 video {
   max-width: 100%;
   height: auto;
 }
-
+ 
 h1, h2, h3 {
   line-height: 1.25;
   margin: 0 0 0.75rem;
 }
-
+ 
 h1 { font-size: 2rem; }
 h2 { font-size: 1.5rem; }
 h3 { font-size: 1.2rem; }
-
+ 
 p {
   margin: 0 0 1rem;
   max-width: 65ch;
 }
-
+ 
 a {
   color: var(--color-accent);
   text-underline-offset: 0.15em;
 }
-
+ 
 a:hover {
   color: var(--color-accent-dark);
 }
-
+ 
 /* Visible keyboard focus everywhere */
 a:focus-visible,
 button:focus-visible,
 input:focus-visible,
 textarea:focus-visible,
 select:focus-visible {
-  outline: 3px solid var(--color-accent);
+  outline: 3px solid var(--color-focus);
   outline-offset: 2px;
 }
-
+ 
 /* ---------- Header & navigation ---------- */
 header {
   background: var(--color-header-bg);
   color: var(--color-header-text);
 }
-
+ 
 header nav ul {
   display: flex;
   flex-wrap: wrap;
+  align-items: center;
   gap: 0.5rem 1.5rem;
   margin: 0;
   padding: 1rem;
@@ -99,23 +157,49 @@ header nav ul {
   max-width: var(--content-width);
   margin-inline: auto;
 }
-
+ 
 header nav a {
   color: var(--color-header-text);
   text-decoration: none;
   padding: 0.25rem 0.1rem;
   border-bottom: 2px solid transparent;
 }
-
+ 
 header nav a:hover,
 header nav a[aria-current="page"] {
+  color: var(--color-header-text);
   border-bottom-color: var(--color-header-text);
 }
-
+ 
 header nav a:focus-visible {
   outline-color: #ffffff;
 }
-
+ 
+/* ---------- Theme toggle (created by scripts/theme.js) ---------- */
+.theme-toggle {
+  font: inherit;
+  font-weight: 600;
+  color: var(--color-header-text);
+  background: transparent;
+  border: 2px solid var(--color-header-text);
+  border-radius: var(--radius);
+  padding: 0.25rem 0.75rem;
+  cursor: pointer;
+}
+ 
+.theme-toggle:hover {
+  background: rgba(255, 255, 255, 0.18);
+}
+ 
+.theme-toggle:focus-visible {
+  outline-color: #ffffff;
+}
+ 
+/* When a page's nav has no list, the script puts the button straight in the nav */
+header nav > .theme-toggle {
+  margin: 0.75rem 1rem;
+}
+ 
 /* ---------- Main content ---------- */
 main {
   flex: 1;
@@ -124,19 +208,19 @@ main {
   margin-inline: auto;
   padding: 2rem 1rem;
 }
-
+ 
 /* ---------- Footer ---------- */
 footer {
   padding: 1rem;
   text-align: center;
   color: var(--color-muted);
-  border-top: 1px solid #d0d4da;
+  border-top: 1px solid var(--color-border-soft);
 }
-
+ 
 footer p {
   margin: 0 auto;
 }
-
+ 
 /* ==========================================================
    Contact form
    ========================================================== */
@@ -148,20 +232,20 @@ footer p {
   max-width: 36rem;
   padding: 1.5rem;
   background: var(--color-surface);
-  border: 1px solid #d0d4da;
+  border: 1px solid var(--color-border-soft);
   border-radius: var(--radius);
 }
-
+ 
 .form-field {
   display: flex;
   flex-direction: column;
   gap: 0.4rem;
 }
-
+ 
 .contact-form label {
   font-weight: 600;
 }
-
+ 
 .contact-form input[type="text"],
 .contact-form input[type="email"],
 .contact-form textarea {
@@ -169,31 +253,30 @@ footer p {
   padding: 0.65rem 0.75rem;
   font: inherit;
   color: var(--color-text);
-  background: #ffffff;
+  background: var(--color-input-bg);
   border: 2px solid var(--color-border);
   border-radius: var(--radius);
 }
-
+ 
 .contact-form textarea {
   min-height: 8rem;
   resize: vertical;
 }
-
+ 
 .contact-form button {
   align-self: flex-start;
   padding: 0.7rem 1.5rem;
   font: inherit;
   font-weight: 600;
-  color: #ffffff;
-  background: var(--color-accent);
-  border: 2px solid var(--color-accent);
+  color: var(--color-button-text);
+  background: var(--color-button-bg);
+  border: 2px solid var(--color-button-border);
   border-radius: var(--radius);
   cursor: pointer;
 }
-
+ 
 .contact-form button:hover {
-  background: var(--color-accent-dark);
-  border-color: var(--color-accent-dark);
+  background: var(--color-button-hover);
 }
 /* ---------- Validation (no JavaScript) ---------- */
  
@@ -235,49 +318,58 @@ footer p {
 }
  
 /* Invalid after the user has interacted or tried to submit.
-   Cues: red color + dashed border + inset bar + "x" icon + the
+   Cues: color + dashed border + inset bar + "x" icon + the
    browser's own validation message. */
 .contact-form :user-invalid {
   border-style: dashed;
-  border-color: #b00020;
-  background-color: #fff4f5;
-  box-shadow: inset 5px 0 0 0 #b00020;
+  border-color: var(--color-invalid);
+  background-color: var(--color-invalid-bg);
+  box-shadow: inset 5px 0 0 0 var(--color-invalid);
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Ccircle cx='10' cy='10' r='9' fill='%23b00020'/%3E%3Cpath d='M6.5 6.5l7 7M13.5 6.5l-7 7' stroke='white' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E");
 }
  
-/* Valid after the user has interacted: solid green border + check icon */
+/* Valid after the user has interacted: solid border + check icon */
 .contact-form :user-valid {
   border-style: solid;
-  border-color: #1b6e2d;
-  background-color: #f3faf4;
-  box-shadow: inset 5px 0 0 0 #1b6e2d;
+  border-color: var(--color-valid);
+  background-color: var(--color-valid-bg);
+  box-shadow: inset 5px 0 0 0 var(--color-valid);
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Ccircle cx='10' cy='10' r='9' fill='%231b6e2d'/%3E%3Cpath d='M5.5 10.5l3 3 6-6.5' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+}
+ 
+/* Dark theme: lighter icon circles with dark symbols, so they stand out */
+:root[data-theme="dark"] .contact-form :user-invalid {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Ccircle cx='10' cy='10' r='9' fill='%23ff6b81'/%3E%3Cpath d='M6.5 6.5l7 7M13.5 6.5l-7 7' stroke='%232e131b' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E");
+}
+ 
+:root[data-theme="dark"] .contact-form :user-valid {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Ccircle cx='10' cy='10' r='9' fill='%236fd08a'/%3E%3Cpath d='M5.5 10.5l3 3 6-6.5' fill='none' stroke='%2312261a' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
 }
  
 /* Focus stays visible in every validation state */
 .contact-form input:focus-visible,
 .contact-form textarea:focus-visible {
-  outline: 3px solid var(--color-accent);
+  outline: 3px solid var(--color-focus);
   outline-offset: 2px;
 }
-
+ 
 /* ---------- Narrow screens ---------- */
 @media (max-width: 480px) {
   h1 { font-size: 1.6rem; }
-
+ 
   main {
     padding: 1.25rem 0.75rem;
   }
-
+ 
   .contact-form {
     padding: 1rem;
   }
-
+ 
   .contact-form button {
     align-self: stretch;
   }
 }
-
+ 
 /* ---------- Respect user preferences ---------- */
 @media (prefers-reduced-motion: reduce) {
   * {
@@ -286,7 +378,7 @@ footer p {
     scroll-behavior: auto !important;
   }
 }
-
+ 
 /* ==========================================================
    JavaScript enhancements (form-with-js.html)
    ========================================================== */
@@ -300,7 +392,7 @@ footer p {
 .field-error {
   margin: 0;
   font-weight: 600;
-  color: #8c0019;
+  color: var(--color-invalid-text);
 }
  
 .field-error:empty {
@@ -318,7 +410,7 @@ footer p {
   padding: 0.9rem 1rem;
   border: 2px solid var(--color-border);
   border-radius: var(--radius);
-  background: #eef2f8;
+  background: var(--color-info-bg);
 }
  
 .info-area h2,
@@ -345,9 +437,9 @@ footer p {
  
 /* Near the limit: amber, thick left bar, and a warning symbol */
 .info-area[data-state="warning"] {
-  border-color: #8a5a00;
+  border-color: var(--color-warn-border);
   border-left-width: 8px;
-  background: #fff6dc;
+  background: var(--color-warn-bg);
 }
  
 .info-area[data-state="warning"] .length-warning::before {
@@ -356,10 +448,10 @@ footer p {
  
 /* At the limit: informational (not an error), double border */
 .info-area[data-state="limit"] {
-  border-color: var(--color-header-bg);
+  border-color: var(--color-limit-border);
   border-style: double;
   border-width: 6px;
-  background: #e8eefc;
+  background: var(--color-limit-bg);
 }
  
 .info-area[data-state="limit"] .length-warning::before {
@@ -368,13 +460,13 @@ footer p {
  
 /* Error area */
 .error-panel {
-  border-color: #b00020;
+  border-color: var(--color-invalid);
   border-left-width: 8px;
-  background: #fff4f5;
+  background: var(--color-invalid-bg);
 }
  
 .error-panel h2 {
-  color: #8c0019;
+  color: var(--color-invalid-text);
 }
  
 .error-panel h2::before {
@@ -391,6 +483,6 @@ footer p {
 }
  
 .error-panel a {
-  color: #8c0019;
+  color: var(--color-invalid-text);
   font-weight: 700;
 }

@@ -1,13 +1,36 @@
-/* Setting custom properties*/
+/* Setting custom properties */
+
+/* Light theme (default, also used when JavaScript is off) */
 :root{
+    color-scheme: light;
+
     --color-bg: #8abcff;
     --color-surface: #ffffff;
     --color-text: #14212b;
     --color-muted: #4a5b68;
+    --color-heading: #084c59;
+
+    --color-link: #084c59;
+    --color-link-hover: #052f38;
+    --color-link-visited: #4b2a7a;
+
     --color-accent: #0b6e7f;
     --color-accent-soft: #d6eef2;
-    --color-accent-dark: #084c59;
-    --color-focus: #e08600;
+
+    --color-header-bg: #084c59;
+    --color-header-text: #ffffff;
+    --color-nav-hover-bg: #0b6e7f;
+
+    --color-focus: #7a3b00;          /* on page and card surfaces */
+    --color-focus-on-dark: #ffc857;  /* on the header and footer */
+
+    --color-input-bg: #ffffff;
+    --color-input-border: #4a5b68;
+
+    --color-button-bg: #0b6e7f;
+    --color-button-hover: #084c59;
+    --color-button-text: #ffffff;
+    --color-button-border: #0b6e7f;
 
     --font-body: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
     --font-heading: Georgia, "Times New Roman", serif;
@@ -15,6 +38,39 @@
     --max-width: 60rem;
     --space: 1rem;
     --radius: 0.5rem;
+}
+
+/* Dark theme: only the shared colors change */
+:root[data-theme="dark"]{
+    color-scheme: dark;
+
+    --color-bg: #0e1620;
+    --color-surface: #172230;
+    --color-text: #e6edf3;
+    --color-muted: #a7b3c0;
+    --color-heading: #7fd1e0;
+
+    --color-link: #7fd1e0;
+    --color-link-hover: #b4e6ef;
+    --color-link-visited: #c9b8ff;
+
+    --color-accent: #7fd1e0;
+    --color-accent-soft: #24384a;
+
+    --color-header-bg: #0a2530;
+    --color-header-text: #ffffff;
+    --color-nav-hover-bg: #14505f;
+
+    --color-focus: #ffc857;
+    --color-focus-on-dark: #ffc857;
+
+    --color-input-bg: #0e1620;
+    --color-input-border: #8a9bab;
+
+    --color-button-bg: #0b6e7f;
+    --color-button-hover: #084c59;
+    --color-button-text: #ffffff;
+    --color-button-border: #7fd1e0;
 }
 
 /*base and typography*/
@@ -43,7 +99,7 @@ h4{
 }
 
 h1 { font-size: 2.25rem; }
-h2 { font-size: 1.75rem; color: var(--color-accent-dark); }
+h2 { font-size: 1.75rem; color: var(--color-heading); }
 h3 { font-size: 1.35rem; }
 h4 { font-size: 1.1rem; }
 
@@ -58,12 +114,12 @@ p {
 }
  
 a {
-  color: var(--color-accent);
+  color: var(--color-link);
   text-underline-offset: 0.15em;
 }
 
 a:visited {
-  color: var(--color-accent-dark);
+  color: var(--color-link-visited);
 }
  
 code {
@@ -74,8 +130,8 @@ code {
 
 /* ===== 3. Header and navigation ===== */
 body > header {
-  background: var(--color-accent-dark);
-  color: #ffffff;
+  background: var(--color-header-bg);
+  color: var(--color-header-text);
   padding: var(--space);
   text-align: center;
 }
@@ -89,6 +145,7 @@ nav > ul {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  align-items: center;
   gap: 0.5rem 1.5rem;
   list-style: none;
   margin: 0;
@@ -98,7 +155,7 @@ nav > ul {
 /* Target: every link anywhere inside <nav> (descendant combinator) */
 nav a {
   display: inline-block;
-  color: #ffffff;
+  color: var(--color-header-text);
   padding: 0.4em 0.8em;
   border-bottom: 3px solid transparent;
   text-decoration: none;
@@ -106,12 +163,12 @@ nav a {
 }
  
 nav a:visited {
-  color: #ffffff;
+  color: var(--color-header-text);
 }
  
 /* Target: the nav link for the page you are currently on (attribute selector) */
 a[aria-current="page"] {
-  border-bottom-color: var(--color-focus);
+  border-bottom-color: var(--color-focus-on-dark);
 }
  
 /* Target: the skip link placed directly inside <body> (attribute selector).
@@ -127,6 +184,24 @@ body > a[href="#main"]:focus {
   left: var(--space);
   top: var(--space);
   z-index: 10;
+}
+
+/* ===== Theme toggle (created by scripts/theme.js) ===== */
+.theme-toggle {
+  font: inherit;
+  font-weight: 600;
+  color: var(--color-header-text);
+  background: transparent;
+  border: 2px solid var(--color-header-text);
+  border-radius: 0.25rem;
+  padding: 0.3em 0.8em;
+  cursor: pointer;
+}
+
+.theme-toggle:hover {
+  color: var(--color-header-text);
+  background: var(--color-nav-hover-bg);
+  border-color: var(--color-header-text);
 }
 
 /* ===== 4. Main content and sections ===== */
@@ -299,8 +374,8 @@ textarea {
   width: 100%;
   font: inherit;
   color: var(--color-text);
-  background: #ffffff;
-  border: 2px solid var(--color-muted);
+  background: var(--color-input-bg);
+  border: 2px solid var(--color-input-border);
   border-radius: 0.25rem;
   padding: 0.5em 0.75em;
 }
@@ -308,9 +383,9 @@ textarea {
 button {
   font: inherit;
   font-weight: 600;
-  color: #ffffff;
-  background: var(--color-accent);
-  border: 2px solid var(--color-accent);
+  color: var(--color-button-text);
+  background: var(--color-button-bg);
+  border: 2px solid var(--color-button-border);
   border-radius: 0.25rem;
   padding: 0.6em 1.2em;
   cursor: pointer;
@@ -319,8 +394,8 @@ button {
  
 /* ===== 8. Footer ===== */
 body > footer {
-  background: var(--color-accent-dark);
-  color: #ffffff;
+  background: var(--color-header-bg);
+  color: var(--color-header-text);
   text-align: center;
   padding: var(--space);
   margin-top: calc(var(--space) * 2);
@@ -332,27 +407,34 @@ body > footer p {
  
 body > footer a,
 body > footer a:visited {
-  color: #ffffff;
+  color: var(--color-header-text);
 }
 
 /* ===== 9. Hover and focus ===== */
 a:hover {
-  color: var(--color-accent-dark);
+  color: var(--color-link-hover);
   text-decoration-thickness: 2px;
 }
  
 nav a:hover {
-  color: #ffffff;
-  background: var(--color-accent);
+  color: var(--color-header-text);
+  background: var(--color-nav-hover-bg);
 }
  
 body > footer a:hover {
-  background: var(--color-accent);
+  color: var(--color-header-text);
+  background: var(--color-nav-hover-bg);
 }
  
 button:hover {
-  background: var(--color-accent-dark);
-  border-color: var(--color-accent-dark);
+  background: var(--color-button-hover);
+  border-color: var(--color-button-border);
+}
+
+/* Keep the theme toggle's own hover look (same specificity, later in file) */
+.theme-toggle:hover {
+  background: var(--color-nav-hover-bg);
+  border-color: var(--color-header-text);
 }
  
 .card:hover {
@@ -367,6 +449,12 @@ textarea:focus-visible,
 iframe:focus-visible {
   outline: 3px solid var(--color-focus);
   outline-offset: 3px;
+}
+
+/* Header and footer are dark in both themes, so they need a light focus ring */
+body > header :focus-visible,
+body > footer :focus-visible {
+  outline-color: var(--color-focus-on-dark);
 }
 
 /* ===== 10. Narrow-screen layout ===== */
@@ -384,6 +472,11 @@ iframe:focus-visible {
   nav a {
     display: block;
     text-align: center;
+    padding: 0.7em 0.8em;
+  }
+
+  .theme-toggle {
+    width: 100%;
     padding: 0.7em 0.8em;
   }
  
