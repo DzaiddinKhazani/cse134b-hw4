@@ -486,3 +486,17 @@ footer p {
   color: var(--color-invalid-text);
   font-weight: 700;
 }
+
+/* ==========================================================
+   View transition (theme switch)
+   ========================================================== */
+/* The default cross-fade is used. If reduced motion is requested, remove it
+   (scripts/theme.js also skips startViewTransition in that case). */
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) {
+    animation: none !important;
+  }
+}
+ 

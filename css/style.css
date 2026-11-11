@@ -498,3 +498,14 @@ body > footer :focus-visible {
     grid-template-columns: repeat(2, 1fr);
   }
 }
+
+/* ===== 11. View transition (theme switch) ===== */
+/* The default cross-fade is used. If reduced motion is requested, remove it
+   (scripts/theme.js also skips startViewTransition in that case). */
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) {
+    animation: none !important;
+  }
+}
