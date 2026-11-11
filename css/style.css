@@ -1,0 +1,407 @@
+/* Setting custom properties*/
+:root{
+    --color-bg: #8abcff;
+    --color-surface: #ffffff;
+    --color-text: #14212b;
+    --color-muted: #4a5b68;
+    --color-accent: #0b6e7f;
+    --color-accent-soft: #d6eef2;
+    --color-accent-dark: #084c59;
+    --color-focus: #e08600;
+
+    --font-body: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+    --font-heading: Georgia, "Times New Roman", serif;
+
+    --max-width: 60rem;
+    --space: 1rem;
+    --radius: 0.5rem;
+}
+
+/*base and typography*/
+
+*,
+*::before,
+*::after{
+    box-sizing: border-box;
+}
+
+body{
+    font-family: var(--font-body);
+    color: var(--color-text);
+    background: var(--color-bg);
+    line-height: 1.65;
+    margin: 0;
+}
+
+h1,
+h2,
+h3,
+h4{
+    font-family: var(--font-heading);
+    line-height: 1.25;
+    margin: 0 0 var(--space);
+}
+
+h1 { font-size: 2.25rem; }
+h2 { font-size: 1.75rem; color: var(--color-accent-dark); }
+h3 { font-size: 1.35rem; }
+h4 { font-size: 1.1rem; }
+
+p,
+ul,
+ol{
+    margin:0 0 var(--space);
+}
+
+p {
+  max-width: 65ch;
+}
+ 
+a {
+  color: var(--color-accent);
+  text-underline-offset: 0.15em;
+}
+
+a:visited {
+  color: var(--color-accent-dark);
+}
+ 
+code {
+  background: var(--color-accent-soft);
+  padding: 0.1em 0.35em;
+  border-radius: 0.25rem;
+}
+
+/* ===== 3. Header and navigation ===== */
+body > header {
+  background: var(--color-accent-dark);
+  color: #ffffff;
+  padding: var(--space);
+  text-align: center;
+}
+ 
+body > header h1 {
+  margin-bottom: 0.5rem;
+}
+ 
+/* Target: the <ul> that is a direct child of <nav> (child combinator) */
+nav > ul {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem 1.5rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+ 
+/* Target: every link anywhere inside <nav> (descendant combinator) */
+nav a {
+  display: inline-block;
+  color: #ffffff;
+  padding: 0.4em 0.8em;
+  border-bottom: 3px solid transparent;
+  text-decoration: none;
+  font-weight: 600;
+}
+ 
+nav a:visited {
+  color: #ffffff;
+}
+ 
+/* Target: the nav link for the page you are currently on (attribute selector) */
+a[aria-current="page"] {
+  border-bottom-color: var(--color-focus);
+}
+ 
+/* Target: the skip link placed directly inside <body> (attribute selector).
+   Hidden off-screen until it receives keyboard focus. */
+body > a[href="#main"] {
+  position: absolute;
+  left: -999rem;
+  background: var(--color-surface);
+  padding: 0.5em 1em;
+}
+ 
+body > a[href="#main"]:focus {
+  left: var(--space);
+  top: var(--space);
+  z-index: 10;
+}
+
+/* ===== 4. Main content and sections ===== */
+main {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: calc(var(--space) * 2) var(--space);
+}
+ 
+/* Target: any <section> that directly follows another <section>
+   (adjacent sibling combinator), to separate stacked sections */
+section + section {
+  margin-top: calc(var(--space) * 2);
+  padding-top: calc(var(--space) * 2);
+  border-top: 2px solid var(--color-accent-soft);
+}
+ 
+#about picture,
+#about img {
+  display: block;
+  border-radius: 50%;
+  margin-bottom: var(--space);
+}
+ 
+#about img {
+  max-width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+ 
+#about [role="group"] {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+ 
+progress {
+  width: 100%;
+  max-width: 20rem;
+  accent-color: var(--color-accent);
+}
+ 
+svg {
+  max-width: 100%;
+  height: auto;
+}
+
+/* ===== 5. Cards (projects and articles) ===== */
+/* Add class="card-grid" to a wrapper <div> and class="card" to each <article> */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: calc(var(--space) * 1.5);
+  margin-top: calc(var(--space) * 1.5);
+}
+ 
+.card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-accent-soft);
+  border-radius: var(--radius);
+  padding: var(--space);
+  margin-bottom: var(--space);
+}
+ 
+.card-grid .card {
+  margin-bottom: 0;
+}
+ 
+.card img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 0.25rem;
+  margin-bottom: 0.75rem;
+}
+ 
+.card h3 {
+  margin-bottom: 0.5rem;
+}
+ 
+.card p:last-child {
+  margin-bottom: 0;
+}
+ 
+.card a {
+  text-decoration: none;
+}
+
+main > article,
+.intro {
+  background: var(--color-surface);
+  border: 1px solid var(--color-accent-soft);
+  border-radius: var(--radius);
+  padding: calc(var(--space) * 1.5);
+}
+
+.intro p{
+  max-width: none;
+}
+
+/* ===== 6. Media ===== */
+img,
+video,
+canvas,
+iframe {
+  max-width: 100%;
+}
+ 
+img,
+video {
+  height: auto;
+}
+ 
+audio {
+  width: 100%;
+  max-width: 30rem;
+}
+ 
+iframe {
+  border: 0;
+}
+ 
+ 
+/* ===== 7. Forms and buttons ===== */
+fieldset {
+  border: 2px solid var(--color-accent-soft);
+  border-radius: var(--radius);
+  background: var(--color-surface);
+  padding: var(--space);
+  margin: 0;
+  width: 100%;
+  min-width: none;
+  max-width: 40rem;
+}
+
+fieldset p{
+    max-width: none;
+}
+ 
+legend {
+  font-family: var(--font-heading);
+  font-weight: bold;
+  font-size: 1.15rem;
+  float: left;
+  width: 100%;
+  padding: 0;
+  margin: 0 0 var(--space);
+}
+
+legend + p {
+    clear: both;
+}
+ 
+label {
+  font-weight: 600;
+}
+ 
+/* Target: any form field that directly follows its <label>
+   (adjacent sibling combinator), so it sits on its own line */
+label + input,
+label + textarea {
+  display: block;
+  margin-top: 0.25rem;
+}
+ 
+/* Target: text-like inputs and the textarea (attribute selectors) */
+input[type="text"],
+input[type="email"],
+textarea {
+  width: 100%;
+  font: inherit;
+  color: var(--color-text);
+  background: #ffffff;
+  border: 2px solid var(--color-muted);
+  border-radius: 0.25rem;
+  padding: 0.5em 0.75em;
+}
+ 
+button {
+  font: inherit;
+  font-weight: 600;
+  color: #ffffff;
+  background: var(--color-accent);
+  border: 2px solid var(--color-accent);
+  border-radius: 0.25rem;
+  padding: 0.6em 1.2em;
+  cursor: pointer;
+}
+ 
+ 
+/* ===== 8. Footer ===== */
+body > footer {
+  background: var(--color-accent-dark);
+  color: #ffffff;
+  text-align: center;
+  padding: var(--space);
+  margin-top: calc(var(--space) * 2);
+}
+ 
+body > footer p {
+  margin: 0.25rem auto;
+}
+ 
+body > footer a,
+body > footer a:visited {
+  color: #ffffff;
+}
+
+/* ===== 9. Hover and focus ===== */
+a:hover {
+  color: var(--color-accent-dark);
+  text-decoration-thickness: 2px;
+}
+ 
+nav a:hover {
+  color: #ffffff;
+  background: var(--color-accent);
+}
+ 
+body > footer a:hover {
+  background: var(--color-accent);
+}
+ 
+button:hover {
+  background: var(--color-accent-dark);
+  border-color: var(--color-accent-dark);
+}
+ 
+.card:hover {
+  border-color: var(--color-accent);
+}
+ 
+/* Visible focus for every interactive element (outline is replaced, never removed) */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+iframe:focus-visible {
+  outline: 3px solid var(--color-focus);
+  outline-offset: 3px;
+}
+
+/* ===== 10. Narrow-screen layout ===== */
+@media (max-width: 40rem) {
+  h1 { font-size: 1.85rem; }
+  h2 { font-size: 1.5rem; }
+ 
+  /* Navigation stacks into a full-width vertical list */
+  nav > ul {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.25rem;
+  }
+ 
+  nav a {
+    display: block;
+    text-align: center;
+    padding: 0.7em 0.8em;
+  }
+ 
+  /* Cards go from three columns to one */
+  .card-grid {
+    grid-template-columns: 1fr;
+  }
+ 
+  /* Buttons become easier to tap */
+  #about [role="group"] button,
+  form button {
+    width: 100%;
+  }
+}
+ 
+/* Middle widths: two columns of cards */
+@media (min-width: 40.01rem) and (max-width: 56rem) {
+  .card-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

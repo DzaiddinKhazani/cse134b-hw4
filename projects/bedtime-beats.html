@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Project template: a reusable layout for my project pages.">
+  <title>Bedtime Beats | Dzaiddin Khazani</title>
+  <link rel="icon" href="../images/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+
+  <header>
+    <h1>Dzaiddin Khazani</h1>
+
+    <nav aria-label="Primary">
+      <ul>
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="index.html" aria-current="page">Projects</a></li>
+        <li><a href="../articles/index.html">Articles</a></li>
+        <li><a href="../experiments.html">Experiments</a></li>
+        <li><a href="../index.html#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="main">
+    <p><a href="index.html">Back to all projects</a></p>
+
+    <article>
+      <header>
+        <h2>Bedtime Beats</h2>
+        <p>Finish the rhythm game and keep on dancing, but keep your eye out for your parent's shadow below the door.</p>
+      </header>
+
+      <section>
+        <h3>Play It</h3>
+        <iframe height="167" width="552" frameborder="0" src="https://itch.io/embed/3056432"></iframe>
+
+        <noscript>
+          <p>JavaScript is needed to play the embedded demo. Please enable it or visit the itch.io page directly.</p>
+        </noscript>
+      </section>
+
+      <section>
+        <h3>Development Status</h3>
+        <p>
+          <label for="dev-progress">Overall progress</label>
+          <progress id="dev-progress" value="70" max="100">70%</progress>
+        </p>
+      </section>
+
+      <section>
+        <h3>About This Project</h3>
+        <svg width="64" height="64" viewBox="0 0 64 64" role="img" aria-labelledby="platform-icon-title">
+          <title id="platform-icon-title">Game controller icon</title>
+          <rect x="6" y="18" width="52" height="28" rx="14" fill="#ccff99" stroke="black" stroke-width="2"/>
+          <circle cx="22" cy="32" r="5" fill="none" stroke="black" stroke-width="2"/>
+          <circle cx="42" cy="29" r="3" fill="black"/>
+          <circle cx="48" cy="35" r="3" fill="black"/>
+        </svg>
+        <p>
+          Bedtime Beats is a game where you control a child trying to finish the last rhythm game level before going to bed, but must keep
+          his ears close to the ground for his parent's footstep, as who knows what happens if he's caught beyond bedtime.
+        </p>
+        <ul>
+          <li>Role: I worked on the rhythm game logic, both the logic of the notes, the score system as well as the life functions.</li>
+          <li>Tools: Unity</li>
+        </ul>
+      </section>
+
+    </article>
+  </main>
+
+  <footer>
+    <p>&copy; 2026 Dzaiddin Khazani. All rights reserved.</p>
+    <p><a href="#main">Back to top</a></p>
+  </footer>
+
+</body>
+</html>

@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Experiments with newer HTML elements: template, audio, video, source, and canvas.">
+  <title>Experiments | Dzaiddin Khazani</title>
+  <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
+  <script src="scripts/hello-world.js" defer></script>
+  <link rel="stylesheet" href = "css/style.css">
+</head>
+<body>
+
+
+  <header>
+    <h1>Dzaiddin Khazani</h1>
+
+    <nav aria-label="Primary">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="projects/index.html">Projects</a></li>
+        <li><a href="articles/index.html">Articles</a></li>
+        <li><a href="experiments.html" aria-current="page">Experiments</a></li>
+        <li><a href="index.html#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="main">
+    <h2><strong>Experiments</strong></h2>
+
+    <p>A playground for newer HTML elements: template, audio, video, source, and canvas.</p>
+
+    <section>
+      <h3>Template</h3>
+      <p>
+        The <code>template</code> element holds markup that the browser parses
+        but never displays. JavaScript can later clone it to stamp out new
+        content, such as project cards. The card below is inside a template, so
+        it stays invisible on this page.
+      </p>
+      <template id="project-card-template">
+        <article>
+          <h4>Project Name</h4>
+          <p>A short description of the project.</p>
+          <a href="projects/project-template.html">Learn more</a>
+        </article>
+      </template>
+    </section>
+
+    <section>
+      <h3>Audio</h3>
+      <p>
+        The <code>audio</code> element plays sound. Each <code>source</code>
+        offers a different file format, and the browser picks the first one it
+        supports.
+      </p>
+      <audio controls preload="metadata">
+        <source src="media/sample.mp3" type="audio/mpeg">
+        <source src="media/sample.ogg" type="audio/ogg">
+        <p>Your browser does not support audio. <a href="media/sample.mp3">Download the clip</a> instead.</p>
+      </audio>
+    </section>
+
+    <section>
+      <h3>Video</h3>
+      <p>
+        The <code>video</code> element works the same way, with multiple
+        <code>source</code> formats and a poster image shown before playback.
+      </p>
+      <video controls width="480" preload="metadata" poster="images/video-poster.jpg">
+        <source src="media/sample.mp4" type="video/mp4">
+        <source src="media/sample.webm" type="video/webm">
+        <p>Your browser does not support video. <a href="media/sample.mp4">Download the clip</a> instead.</p>
+      </video>
+    </section>
+
+    <section>
+      <h3>Canvas</h3>
+      <p>
+        The <code>canvas</code> element is a blank drawing surface that
+        JavaScript paints on. This small fish is drawn by a short script.
+      </p>
+      <canvas id="demo-canvas" width="300" height="150">
+        Your browser does not support canvas. This is a drawing of an orange fish.
+      </canvas>
+
+    </section>
+
+        <section>
+      <h3>Custom Elements</h3>
+      <p>
+        <code>page-intro</code> is a semantic, CSS-only element that wraps
+        the heading and introduction at the top of this page and of the
+        Projects and Articles pages.
+      </p>
+      <p>
+        <code>hello-world</code> prints a message to the browser console
+        without changing the page. Open your developer tools console to see
+        it.
+      </p>
+      <hello-world></hello-world>
+    </section>
+
+    <section>
+      <h3>MathML (Extra Credit)</h3>
+      <p>Einstein's mass-energy equivalence, written with MathML:</p>
+      <p>
+        <math display="block">
+          <mrow>
+            <mi>E</mi>
+            <mo>=</mo>
+            <mi>m</mi>
+            <msup>
+              <mi>c</mi>
+              <mn>2</mn>
+            </msup>
+          </mrow>
+        </math>
+      </p>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2026 Dzaiddin. All rights reserved.</p>
+    <p><a href="#main">Back to top</a></p>
+  </footer>
+
+  <script>
+    const ctx = document.getElementById('demo-canvas').getContext('2d');
+    ctx.fillStyle = '#cfe8ff';
+    ctx.fillRect(0, 0, 300, 150);
+    ctx.fillStyle = '#ff9933';
+    ctx.beginPath();
+    ctx.ellipse(130, 75, 50, 28, 0, 0, Math.PI * 2);
+    ctx.moveTo(175, 75);
+    ctx.lineTo(220, 45);
+    ctx.lineTo(220, 105);
+    ctx.fill();
+    ctx.fillStyle = 'black';
+    ctx.fillRect(100, 66, 8, 8);
+  </script>
+
+</body>
+</html>
