@@ -286,3 +286,111 @@ footer p {
     scroll-behavior: auto !important;
   }
 }
+
+/* ==========================================================
+   JavaScript enhancements (form-with-js.html)
+   ========================================================== */
+ 
+/* Author display rules must not override the hidden attribute */
+[hidden] {
+  display: none !important;
+}
+ 
+/* Inline, field-specific error text. "Error:" is real text, not just color. */
+.field-error {
+  margin: 0;
+  font-weight: 600;
+  color: #8c0019;
+}
+ 
+.field-error:empty {
+  display: none;
+}
+ 
+.field-error::before {
+  content: "Error: ";
+  font-weight: 700;
+}
+ 
+/* Shared box style for the two message areas */
+.info-area,
+.error-panel {
+  padding: 0.9rem 1rem;
+  border: 2px solid var(--color-border);
+  border-radius: var(--radius);
+  background: #eef2f8;
+}
+ 
+.info-area h2,
+.error-panel h2 {
+  margin: 0 0 0.4rem;
+  font-size: 1.05rem;
+}
+ 
+/* Information area: character count */
+.char-count {
+  margin: 0;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+ 
+.length-warning {
+  margin: 0.4rem 0 0;
+  font-weight: 600;
+}
+ 
+.length-warning:empty {
+  display: none;
+}
+ 
+/* Near the limit: amber, thick left bar, and a warning symbol */
+.info-area[data-state="warning"] {
+  border-color: #8a5a00;
+  border-left-width: 8px;
+  background: #fff6dc;
+}
+ 
+.info-area[data-state="warning"] .length-warning::before {
+  content: "\26A0\FE0F  ";
+}
+ 
+/* At the limit: informational (not an error), double border */
+.info-area[data-state="limit"] {
+  border-color: var(--color-header-bg);
+  border-style: double;
+  border-width: 6px;
+  background: #e8eefc;
+}
+ 
+.info-area[data-state="limit"] .length-warning::before {
+  content: "\2139\FE0F  ";
+}
+ 
+/* Error area */
+.error-panel {
+  border-color: #b00020;
+  border-left-width: 8px;
+  background: #fff4f5;
+}
+ 
+.error-panel h2 {
+  color: #8c0019;
+}
+ 
+.error-panel h2::before {
+  content: "\2716  ";
+}
+ 
+.error-panel ul {
+  margin: 0;
+  padding-left: 1.25rem;
+}
+ 
+.error-panel li {
+  margin: 0.3rem 0;
+}
+ 
+.error-panel a {
+  color: #8c0019;
+  font-weight: 700;
+}
