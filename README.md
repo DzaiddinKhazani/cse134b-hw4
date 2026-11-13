@@ -1,5 +1,6 @@
 | Field                | Value                                                   |
 | ---------------------|---------------------------------------------------------|
 | Repository URL       | https://www.github.com/DzaiddinKhazani/cse134-hw3       |
-| Part 1 Deployed URL  | https://dzaiddinkhazanihw3.netlify.app/part%201/cheese  |
-| Part 2 Deployed URL  | https://dzaiddinkhazanihw3.netlify.app/                 |
+| Website URL          | https://dzaiddinkhazanihw4.netlify.app/                 |
+| form-no-js           | https://dzaiddinkhazanihw4.netlify.app/form-no-js.html  |
+| form-with-js         | https://dzaiddinkhazanihw4.netlify.app/form-with-js.html|
